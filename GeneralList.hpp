@@ -57,6 +57,17 @@ class List {
 			return _size;
 		}
 		
+		List &operator=(const List &list) {
+			Dlist temp;
+			_size = list._size;
+			temp = _front;
+			for(temp = list._front; temp != nullptr; temp = temp->next) {
+				push_back(temp->value);
+			}
+			return *this;
+
+		}
+
 		void push_front(Data data) {
 			Dlist *newNode = new Dlist;
 			newNode->value = data;
@@ -94,7 +105,7 @@ class List {
 			_size+=1;
 		}
 
-		void rm_frontnode() {
+		void pop_front() {
 			Dlist *front_to_delete = _front;
 			_front = _front->next;
 
@@ -108,27 +119,16 @@ class List {
 			delete front_to_delete;
 			_size -= 1;
 		}
-		
-		void pop_front() {
-			DList *front_to_remove = _front;
-
-			if(_back->next != nullptr){}
-		}
 		//CONVERT THIS FUNCTION
 		void pop_back() {
 			Dlist *back_to_remove = _back;
 			_back = _back->prev;
 			if(_back == nullptr) {
-				Dlist *new_back = _front;
-				while(new_back->next!=_back) {
-					new_back=new_back->next;
-				}
-				new_back->next=nullptr;
-				_back=new_back;
+				_front = nullptr;
 			}
+
 			else {
-				_front=nullptr;
-				_back=nullptr;
+				_back->next = nullptr;
 			}
 
 			delete back_to_remove;
@@ -142,7 +142,7 @@ class List {
 
 		//Modify this
 		void print() {
-			Llist *temp;
+			Dlist *temp;
 			for(temp=_front; temp!=nullptr; temp=temp->next) {
 				std::cout << temp->value << " ";
 			}
@@ -150,7 +150,11 @@ class List {
 		}
 		
 		void print_back() {
-		
+			Dlist *temp;
+			for(temp=_back; temp!=nullptr; temp=temp->prev) {
+				std::cout << temp->value<< " ";
+			}
+			std::cout << std::endl;
 		}
 		
 
