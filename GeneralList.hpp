@@ -56,12 +56,12 @@ class List {
 		size_t length() const {
 			return _size;
 		}
-
-		void add_frontnode(Data data) {
+		
+		void push_front(Data data) {
 			Dlist *newNode = new Dlist;
 			newNode->value = data;
 			newNode->prev = nullptr;
-
+			
 			if(_front==nullptr) {
 				newNode->next=nullptr;
 				_back=newNode;
@@ -75,7 +75,7 @@ class List {
 			_size++;
 		}
 
-		void add_backnode(Data data) {
+		void push_back(Data data) {
 			Dlist *newNode = new Dlist;
 			newNode->value = data;
 			newNode->next=nullptr;
@@ -108,13 +108,18 @@ class List {
 			delete front_to_delete;
 			_size -= 1;
 		}
+		
+		void pop_front() {
+			DList *front_to_remove = _front;
 
+			if(_back->next != nullptr){}
+		}
 		//CONVERT THIS FUNCTION
-		void rm_backnode() {
-			Llist *back_to_remove = _back;
-
-			if(_front->next!=nullptr) {
-				Llist *new_back = _front;
+		void pop_back() {
+			Dlist *back_to_remove = _back;
+			_back = _back->prev;
+			if(_back == nullptr) {
+				Dlist *new_back = _front;
 				while(new_back->next!=_back) {
 					new_back=new_back->next;
 				}
@@ -143,4 +148,10 @@ class List {
 			}
 			std::cout << std::endl;
 		}
+		
+		void print_back() {
+		
+		}
+		
+
 };
