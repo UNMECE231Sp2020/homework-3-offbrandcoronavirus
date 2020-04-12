@@ -156,6 +156,8 @@ class List {
 			}
 			std::cout << std::endl;
 		}
+
+		//Should just declare the function here
 		friend template<typename V> bool operator!=(const List <V> &a, const List <V> &b) {
 			if(a._size == b._size) {
 				for(auto i = a._front, auto j = b._front; i != nullptr, j!=nullptr; i->next, j->next) {
@@ -163,14 +165,15 @@ class List {
 						return false;
 				       }
 	       				else {
-		 				return true;
-					}
+		 					return true;
+						}
 				}
 			}
 			else {
 				return true;
 			}
 		}
+		//Should just declare the function here
 		friend template<typename V> bool operator==(const List <V> &a, const List <V> &b) {
 			if(a._size == b._size) {
 				for(auto i = a._front, auto j = b._front; i != nullptr, j != nullptr; i->next, j->next) {
@@ -189,4 +192,4 @@ class List {
 				
 };
 
-	
+//Implement overloading the == and != operator here
