@@ -37,7 +37,7 @@ class List {
 		~List() {
 			while(!empty()) {
 			//while(_size > 0) {
-				rm_frontnode();
+				pop_front();
 			}
 		}
 
@@ -156,31 +156,14 @@ class List {
 			}
 			std::cout << std::endl;
 		}
-		
-		template<typename V> bool operator==(const list <V> &a, const List <V> &b) {
+		friend template<typename V> bool operator!=(const List <V> &a, const List <V> &b) {
 			if(a._size == b._size) {
-				for(auto i = a._front, auto j = b._front; i != nullptr; i->next, j->next) {
-					if(i != j) {
+				for(auto i = a._front, auto j = b._front; i != nullptr, j!=nullptr; i->next, j->next) {
+				       if(i == j) {
 						return false;
-					}
-					else {
-						return true;
-					}
-				}
-			}
-			else {
-				return false;
-			}
-		}
-
-		template<typename V> bool operator!=(const list <V> &a, const List <V> &b) {
-			if(a._size == b._size) {
-				for(auto i = a._front, auto j = b._front; i != nullptr; i->next, j->next) {
-					if(i == j) {
-						return false;
-					}
-					else {
-						return true;
+				       }
+	       				else {
+		 				return true;
 					}
 				}
 			}
@@ -188,8 +171,22 @@ class List {
 				return true;
 			}
 		}
-
-
+		friend template<typename V> bool operator==(const List <V> &a, const List <V> &b) {
+			if(a._size == b._size) {
+				for(auto i = a._front, auto j = b._front; i != nullptr, j != nullptr; i->next, j->next) {
+					if(i == j) {
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+			}
+			else {
+				return false;
+			}
+		}		
+				
 };
 
 	
