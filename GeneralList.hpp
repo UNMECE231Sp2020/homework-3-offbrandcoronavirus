@@ -157,5 +157,39 @@ class List {
 			std::cout << std::endl;
 		}
 		
+		template<typename V> bool operator==(const list <V> &a, const List <V> &b) {
+			if(a._size == b._size) {
+				for(auto i = a._front, auto j = b._front; i != nullptr; i->next, j->next) {
+					if(i != j) {
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+			}
+			else {
+				return false;
+			}
+		}
+
+		template<typename V> bool operator!=(const list <V> &a, const List <V> &b) {
+			if(a._size == b._size) {
+				for(auto i = a._front, auto j = b._front; i != nullptr; i->next, j->next) {
+					if(i == j) {
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+			}
+			else {
+				return true;
+			}
+		}
+
 
 };
+
+	
